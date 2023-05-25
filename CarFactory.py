@@ -27,7 +27,7 @@ class CarFactory(Car,ABC):
         newBat = NubbinBattery(last_service_date, current_date)
         newCar = Car(newEngine,newBat)
         return newCar
-    def create_glissade(current_date,last_service_date,current_milage,last_service_milage):
+    def create_thovex(current_date,last_service_date,current_milage,last_service_milage):
         newEngine = CapuletEngine(last_service_milage,current_milage)
         newBat = NubbinBattery(last_service_date, current_date)
         newCar = Car(newEngine,newBat)
