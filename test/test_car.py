@@ -6,6 +6,30 @@ from engine.sternman_engine import SternmanEngine
 from engine.willoughby_engine import WilloughbyEngine
 from battery.SpindlerBattery import SpindlerBattery
 from battery.NubbinBattery import NubbinBattery
+from tires.carrigan_tires import CarriganTires
+from tires.octoprime_tires import OctoprimeTires
+
+class TestCarriganTires(unittest.TestCase):
+    def test_tires_should_be_serviced(self):
+        arr = [0.5,0.3,0.4,0.9]
+        TestTires = CarriganTires(arr)
+        self.assertTrue(CarriganTires.needs_service())
+
+    def test_tires_should_not_be_serviced(self):
+        arr = [0.5,0.3,0.4,0.8]
+        TestTires = CarriganTires(arr)
+        self.assertFalse(CarriganTires.needs_service())
+
+
+class TestOctoprimeTires(unittest.TestCase):
+    def test_tires_should_be_serviced(self):
+        arr = [1,1,1,0]
+        TestTires = OctoprimeTires(arr)
+        self.assertTrue(OctoprimeTires.needs_service())
+    def test_tires_should_not_be_serviced(self):
+        arr = [1,1,0.9,0]
+        TestTires = OctoprimeTires(arr)
+        self.assertFalse(OctoprimeTires.needs_service())
 
 
 class TestCapuletEngine(unittest.TestCase):
@@ -76,7 +100,7 @@ class TestNubbinBattery(unittest.TestCase):
 class TestSpindlerBattery(unittest.TestCase):
     def test_battery_should_be_serviced(self):
         today = datetime.today().date()
-        last_service_date = today.replace(year=today.year - 3)
+        last_service_date = today.replace(year=today.year - 4)
 
         TestBattery = SpindlerBattery(last_service_date, today)
         self.assertTrue(TestBattery.needs_service())
